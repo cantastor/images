@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "images": [
+    {
+      "name": "inference-proxy",
+      "tag": "8.0.38",
+      "digest": "sha256:2fde5eefa43204961d2a1203e6cde35ed128ee7648808eed0589121e9f0d2280",
+      "dockerHub": "docker.io/loeper/cantastor-inference-proxy",
+      "ghcr": "ghcr.io/cantastor/inference-proxy",
+      "platforms": [
+        "linux/amd64"
+      ]
+    },
+    {
+      "name": "agent-microsandbox-slim",
+      "tag": "source-37f78b23f4e1199bb934",
+      "digest": "sha256:97f5b2f06cac1f33ad99419e34a30724e5f2b0659386d585ed55ffd3699e43e4",
+      "dockerHub": "docker.io/loeper/agent-microsandbox-slim",
+      "ghcr": "ghcr.io/cantastor/agent-microsandbox-slim",
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ]
+    },
+    {
+      "name": "agent-microsandbox-office",
+      "tag": "source-24bdf53010a56651f2a5",
+      "digest": "sha256:8131a51cc6ca883deb20f5683e6557b918cef7d316554de00e5f6d8b022fbe2b",
+      "dockerHub": "docker.io/loeper/agent-microsandbox-office",
+      "ghcr": "ghcr.io/cantastor/agent-microsandbox-office",
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ]
+    },
+    {
+      "name": "agent-microsandbox-editor",
+      "tag": "source-e81d058933dc29cf8d29",
+      "digest": "sha256:b521adc84c9ddbedc3965b4b2e6220e9ff80700de0a9991b8ef7eec14a0a3c87",
+      "dockerHub": "docker.io/loeper/agent-microsandbox-editor",
+      "ghcr": "ghcr.io/cantastor/agent-microsandbox-editor",
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ]
+    }
+  ]
+}

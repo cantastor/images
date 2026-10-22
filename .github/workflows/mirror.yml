@@ -1,0 +1,24 @@
+name: Mirror published releases to GHCR
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install registry copy tool
+        run: sudo apt-get update && sudo apt-get install -y skopeo
+      - name: Copy immutable release manifests
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHCR_USER: ${{ github.actor }}
+        run: |
+          printf '%s' "$GHCR_TOKEN" | skopeo login ghcr.io --username "$GHCR_USER" --password-stdin
+          jq -c '.images[]' releases.json | while IFS= read -r image; do
+            source=$(printf '%s' "$image" | jq -r '.dockerHub + "@" + .digest')
+            destination=$(printf '%s' "$image" | jq -r '.ghcr + ":" + .tag')
+            skopeo copy --all --preserve-digests "docker://$source" "docker://$destination"
+          done
