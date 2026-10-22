@@ -9,7 +9,7 @@ Public release metadata for Cantastor's microsandbox images. The desktop applica
 | `ghcr.io/cantastor/agent-microsandbox-office` | Agent image with LibreOffice |
 | `ghcr.io/cantastor/agent-microsandbox-editor` | OpenVSCode editor |
 
-See [releases.json](releases.json) for exact tags, digests, architectures and Docker Hub mirrors. Agent/editor releases preserve the complete upstream manifest lists and attestations. Proxy 8.0.38 currently supports Linux amd64 only. Prefer digest-pinned downloads; tag names alone are not integrity guarantees.
+See [releases.json](releases.json) for exact tags, digests, architectures and Docker Hub mirrors. Agent/editor releases preserve the complete upstream manifest lists and attestations. Proxy 8.0.38-dashboard.1 currently supports Linux amd64 only. Prefer digest-pinned downloads; tag names alone are not integrity guarantees.
 
 ## Mirrors
 
@@ -24,3 +24,12 @@ Redistributors must meet each component's applicable source-distribution obligat
 ## Publishing
 
 The release workflow copies immutable Docker Hub manifests to GHCR with all platforms and digest preservation. Package visibility is set separately in GitHub package settings, and each package is linked to this repository. Never place credentials or Cantastor user data in build contexts, image layers, this repository or workflow logs.
+
+## Bundled proxy dashboard
+
+Proxy `8.0.38-dashboard.1` includes CLIProxyAPI 8.0.38 and CPAMC dashboard 1.26.7.
+The HTML checksum is pinned in the recipe; its MIT notice is included in the image.
+Dashboard files live at `/opt/cli-proxy-api/static`, selected through
+`MANAGEMENT_STATIC_PATH`. Passwords are generated per installation by the app, never
+baked into an image. Inference and dashboard share guest port 8317; the app forwards
+them only to the host's configured loopback port.

@@ -16,4 +16,10 @@ RUN case "$TARGETARCH" in \
     && cp /tmp/proxy/LICENSE /usr/share/doc/cli-proxy-api/LICENSE \
     && rm -rf /tmp/proxy /tmp/proxy.tar.gz
 EXPOSE 8317
+ARG DASHBOARD_VERSION=1.26.7
+RUN mkdir -p /opt/cli-proxy-api/static /usr/share/doc/cli-proxy-api-dashboard \
+    && curl -fL --retry 3 "https://github.com/router-for-me/Cli-Proxy-API-Management-Center/releases/download/v${DASHBOARD_VERSION}/management.html" -o /opt/cli-proxy-api/static/management.html \
+    && echo "8c9c6b7d3fb311e6aad5d06e1993e53a2d28389e640448a1bc6304ed20b057b5  /opt/cli-proxy-api/static/management.html" | sha256sum -c - \
+    && curl -fL --retry 3 "https://raw.githubusercontent.com/router-for-me/Cli-Proxy-API-Management-Center/v${DASHBOARD_VERSION}/LICENSE" -o /usr/share/doc/cli-proxy-api-dashboard/LICENSE
+ENV MANAGEMENT_STATIC_PATH=/opt/cli-proxy-api/static
 CMD ["/usr/local/bin/cli-proxy-api", "-config", "/var/lib/cantastor-proxy/config.yaml"]

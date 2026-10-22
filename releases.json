@@ -3,13 +3,14 @@
   "images": [
     {
       "name": "inference-proxy",
-      "tag": "8.0.38",
-      "digest": "sha256:2fde5eefa43204961d2a1203e6cde35ed128ee7648808eed0589121e9f0d2280",
+      "tag": "8.0.38-dashboard.1",
+      "digest": "sha256:11545487009d55b33224c26e091f235f13382fdcca56f81d182bc5d6a9457b28",
       "dockerHub": "docker.io/loeper/cantastor-inference-proxy",
       "ghcr": "ghcr.io/cantastor/inference-proxy",
       "platforms": [
         "linux/amd64"
-      ]
+      ],
+      "dashboardVersion": "1.26.7"
     },
     {
       "name": "agent-microsandbox-slim",
